@@ -2,6 +2,18 @@ version: '3'
 
 services:
 
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - ./database:/data/db
+    ports:
+      - "27017:27017"
+    restart: unless-stopped
+
   dash:
     build:
       context: .
@@ -10,3 +22,6 @@ services:
     command: python3.7 web/app.py
     ports:
       - "8080:8080" # For Dash
+
+networks:
+
