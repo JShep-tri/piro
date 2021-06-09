@@ -21,6 +21,8 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: piro_dash
+    volumes:
+      - .:/home/dev/piro
     command: python3.7 web/app.py
     ports:
       - "8080:8080" # For Dash
