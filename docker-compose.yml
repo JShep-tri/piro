@@ -12,6 +12,8 @@ services:
       - ./database:/data/db
     ports:
       - "27017:27017"
+    networks:
+      - backend
     restart: unless-stopped
 
   dash:
@@ -22,6 +24,9 @@ services:
     command: python3.7 web/app.py
     ports:
       - "8080:8080" # For Dash
+    networks:
+      - backend
 
 networks:
-
+  backend:
+    name: mongo-net
